@@ -4,7 +4,7 @@ SET( VTK_DEPENDENCIES )
 
 ExternalProject_Add( 
   VTK
-  URL https://github.com/Kitware/VTK/archive/v7.1.1.zip
+  URL https://github.com/Kitware/VTK/archive/v8.1.0.zip
   #GIT_REPOSITORY ${git_protocol}://github.com/Kitware/VTK.git
   #GIT_TAG v8.1.0
   SOURCE_DIR VTK-source
