@@ -2,14 +2,6 @@
 
 SET( OpenCV_DEPENDENCIES )
 
-# Qt related modules
-FIND_PACKAGE( Qt5 COMPONENTS Core Gui Svg Widgets WebView WebEngine WebEngineCore )
-LINK_DIRECTORIES( ${QT_LIBRARY_DIR} )
-SET(WITH_QT FALSE)
-IF( QT5_FOUND )
-  SET(WITH_QT ON)
-ENDIF()
-
 ExternalProject_Add( 
   OpenCV
   DEPENDS Eigen VTK
@@ -35,15 +27,15 @@ ExternalProject_Add(
     -DBUILD_opencv_python2:BOOL=OFF
     -DWITH_CUDA:BOOL=OFF
     -DBUILD_DOCS:BOOL=OFF
-    -DWITH_QT:BOOL=${WITH_QT} # [QT] dependency, enables better GUI
-    -DWITH_EIGEN:BOOL=TRUE # [QT] dependency, enables better GUI
+    -DWITH_QT:BOOL=TRUE # [QT] dependency, enables better GUI
+    -DWITH_EIGEN:BOOL=TRUE # [Eigen] dependency, enables better GUI
     -DWITH_OPENMP:BOOL=ON
     -DWITH_OPENGL:BOOL=ON
     -DWITH_VTK:BOOL=ON
     -DBUILD_JAVA:BOOL=OFF 
     -DEIGEN_INCLUDE_PATH:STRING=${EIGEN_INCLUDE_DIR}
     -DVTK_DIR:STRING=${VTK_DIR}
-    -DOpenCV_USE_GUISUPPORT:BOOL=${WITH_QT} 
+    -DOpenCV_USE_GUISUPPORT:BOOL=TRUE 
     -DCMAKE_BUILD_TYPE:STRING=${CMAKE_BUILD_TYPE}
     -DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_BINARY_DIR}/install
 )
