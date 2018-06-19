@@ -8,7 +8,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.8)
 #ENDIF(COMMAND cmake_policy)
 
 # set project name. The exe name is taken from this
-PROJECT( CaPTk_Depends 1.6.0 )
+PROJECT( CaPTk_Depends VERSION 1.6.0 )
 
 SET(CMAKE_CXX_STANDARD 11)
 SET(CMAKE_CXX_STANDARD_REQUIRED YES) 
