@@ -40,8 +40,6 @@ ExternalProject_Add(
     -DITK_BUILD_ALL_MODULES:BOOL=ON
     -DITK_DYNAMIC_LOADING:BOOL=OFF
     -DModule_ITKReview:BOOL=ON
-    -DVTK_DIR:PATH=${VTK_DIR}
-    -DModule_ITKVtkGlue:BOOL=ON
     -DModule_LesionSizingToolkit:BOOL=ON
     -DModule_SkullStrip:BOOL=ON
     -DModule_TextureFeatures:BOOL=ON
