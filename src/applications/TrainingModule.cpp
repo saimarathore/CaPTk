@@ -345,7 +345,7 @@ VectorDouble TrainingModule::InternalCrossValidationSplitTrainTest(VariableSizeM
   return results;
 }
 
-VectorDouble TrainingModule::CrossValidation(const VariableSizeMatrixType inputFeatures, const VariableLengthVectorType inputLabels, const std::string outputfolder, const int classifiertype, const int number_of_folds, const int featureselectiontype)
+VectorDouble TrainingModule::CrossValidation(const VariableSizeMatrixType inputFeatures, const VariableLengthVectorType inputLabels, const std::string outputfolder, const int classifiertype, const int number_of_folds, const int featureselectiontype,const int optimizationType, const int crossvalidationType)
 {
   MapType FoldingDataMap;
   int fold_size = inputLabels.Size() / number_of_folds;
@@ -377,7 +377,6 @@ VectorDouble TrainingModule::CrossValidation(const VariableSizeMatrixType inputF
       for (int remainingLoop = 0; remainingLoop < remainder; remainingLoop++)
         testingindices.push_back(inputLabels.Size() - 1 - remainingLoop);
     }
-
     for (unsigned int index3 = 0; index3 < inputLabels.Size(); index3++)
     {
       int found = 0;
@@ -422,8 +421,8 @@ VectorDouble TrainingModule::CrossValidation(const VariableSizeMatrixType inputF
 
     std::vector<int> FinalSelectedFeatures;
     VectorDouble crossvalidatedAccuracies;
-    //if (featureselectiontype == 1)
-    //  FinalSelectedFeatures = EffectSizeBasedFeatureSelection(scaledFeatureSet, traininglabels, classifiertype, optimizationtype,cvtype, crossvalidatedAccuracies);
+    if (featureselectiontype == 1)
+      FinalSelectedFeatures = EffectSizeBasedFeatureSelection(scaledFeatureSet, traininglabels, classifiertype, optimizationType, crossvalidationType, crossvalidatedAccuracies);
     //else if (featureselectiontype == 2)
     //  FinalSelectedFeatures = CorrelationBasedFeatureSelection(scaledFeatureSet,traininglabels,classifiertype);
     //else if (featureselectiontype == 3)
@@ -1023,7 +1022,7 @@ bool TrainingModule::Run(const std::string inputFeaturesFile, const std::string 
     WriteCSVFiles(stdVector, outputdirectory + "/zscore_std.csv");
 
     std::cout << "Scaling parameters written." << std::endl;
-    FinalResult = mTrainingSimulator.CrossValidation(scaledFeatureSet, LabelsOfAllSubjects, outputdirectory, classifiertype, foldtype,featureselectiontype);
+    FinalResult = mTrainingSimulator.CrossValidation(scaledFeatureSet, LabelsOfAllSubjects, outputdirectory, classifiertype, foldtype,featureselectiontype,optimizationType,crossvalidationType);
   }
   else if (confType == 2)
   {

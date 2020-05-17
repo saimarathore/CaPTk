@@ -79,7 +79,8 @@ public:
   VectorDouble CalculatePerformanceMeasures(VectorDouble predictedLabels, VectorDouble GivenLabels);
 
   VectorDouble CrossValidation(const VariableSizeMatrixType inputFeatures, const VariableLengthVectorType inputLabels, const std::string outputfolder,
-    const int classifiertype, const int foldtype,const int featureselectiontype);
+    const int classifiertype, const int foldtype,const int featureselectiontype,
+    const int optimizationType, const int crossvalidationType);
 
   VectorDouble InternalCrossValidation(VariableSizeMatrixType inputFeatures, std::vector<double> inputLabels, double cValue, double gValue,int kerneltype);
 
